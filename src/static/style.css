@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Red Hat Display", sans-serif;
+    background-color: #F1F0E8;
+    overflow: hidden;
+    text-align: center;
+}
