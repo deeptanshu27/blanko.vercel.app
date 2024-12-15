@@ -1,0 +1,16 @@
+#big-cursor {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #B3C8CF;
+    border-radius: 100%;
+    position: absolute;
+    transition: 0.3s ease-out;
+}
+
+#small-cursor {
+    width: 16px;
+    height: 16px;
+    background-color: #89A8B2;
+    border-radius: 100%;
+    position: absolute;
+}

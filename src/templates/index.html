@@ -4,26 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='spotify.css') }}">
-        <script>
-            function shorten() {
-                let original_name = document.getElementById("name").innerText;
-                let new_name = original_name.length > 16 ? original_name.slice(0, 16) + ".." : original_name;
-                document.getElementById("name").innerText = new_name;
-
-                let original_artists = document.getElementById("artists").innerText;
-                let new_artists = original_artists.length > 20 ? original_artists.slice(0, 20) + ".." : original_artists;
-                document.getElementById("artists").innerText = new_artists;
-            }
-        </script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/spotify.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/cursor.css') }}">
+        <script src="{{ url_for('static', filename='scripts/spotify.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/cursor.js') }}"></script>
     </head>
-    <body onload="shorten()">
+    <body onload="shorten();setupCursor()">
+        <div id="big-cursor"></div>
+        <div id="small-cursor"></div>
+
         <h1 style="color: #78939c;">> blanko <</h1>
         <div class="spotify-container">
-            <a href="{{ href }}">
+            <a href="{{ href }}" class="selectable">
                 <div class="spotify">
                     <div class="imgs">
+                        {% if is_playing %}
                         <img class="img" src="{{ img }}">
                         <div class="info">
                             <img class="img-dup" src="{{ img }}">
@@ -36,6 +32,9 @@
                             </div> -->
                             <h2 class="artists" id="artists">{{ artists }}</h2>
                         </div>
+                        {% else %}
+                        <img class="img" src="{{ img }}" style="border-radius: 16px; mask-image: none;">
+                        {% endif %}
                     </div>
                 </div>
             </a>

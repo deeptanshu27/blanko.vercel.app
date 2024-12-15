@@ -5,7 +5,7 @@
 #   Another square next to spotify displaying projects
 #   If spotify not playing display anime pfp (like that anime girl drinking coffee)
 
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 import requests
 import spotipy
 from spotipy import SpotifyClientCredentials, SpotifyOAuth
@@ -43,11 +43,11 @@ def hello_world():
             img     = curr_playing["item"]["album"]["images"][1]["url"]
             artists = ", ".join([i["name"] for i in curr_playing["item"]["album"]["artists"]])
             # return curr_playing["item"]
-            return render_template("index.html/", name=name, href=href, img=img, artists=artists)
+            return render_template("index.html/", is_playing=True, name=name, href=href, img=img, artists=artists)
         else:
-            return "No track currently playing..."
+            return render_template("index.html/", is_playing=False, img=url_for("static", filename="images/pfp.jpg"))
     else:
-        return "No track currently playing..."
+        return render_template("index.html/", is_playing=False, img=url_for("static", filename="images/pfp.jpg"))
     
 
     # return "hi"
